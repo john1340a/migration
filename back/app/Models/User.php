@@ -2,47 +2,68 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * La table associée au modèle
+     */
+    protected $table = 'GEOMATIQUEWEB.user';
+
+    /**
+     * Indique si le modèle doit être horodaté
+     */
+    public $timestamps = false;
+
+    /**
+     * Indique que l'ID n'est pas auto-incrémenté
+     */
+    public $incrementing = false;
+
+    /**
+     * Le type de la clé primaire
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Les attributs qui peuvent être assignés en masse
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'admin',
+        'premium',
+        'background_picture'
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
+     * Les attributs qui doivent être cachés
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Les attributs qui doivent être castés
      */
-    protected function casts(): array
+    protected $casts = [
+        'admin' => 'boolean',
+        'premium' => 'boolean',
+    ];
+
+    /**
+     * Relation avec les cartes
+     */
+    public function maps()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Map::class);
     }
 }
