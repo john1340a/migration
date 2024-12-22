@@ -64,6 +64,6 @@ class User extends Authenticatable
      */
     public function maps()
     {
-        return $this->hasMany(Map::class);
+        return $this->hasMany(Map::class, 'fk_user_id', 'id');
     }
 }

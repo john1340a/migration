@@ -38,7 +38,7 @@ class Map extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'fk_user_id'); // Spécifier la clé étrangère correcte
+        return $this->belongsTo(User::class, 'fk_user_id', 'id');  // Spécifiez la clé étrangère
     }
 
     /**
