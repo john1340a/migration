@@ -16,8 +16,6 @@ class UserResource extends JsonResource
             'premium' => (bool)$this->premium,
             'background_picture' => $this->background_picture,
             'maps' => MapResource::collection($this->whenLoaded('maps')),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

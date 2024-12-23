@@ -10,10 +10,8 @@ class MapResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'user_id' => $this->user_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'title' => $this->title,
+            'fk_user_id' => $this->fk_user_id,
         ];
     }
 }
