@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -18,3 +19,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
+Route::post('/register', [RegisteredUserController::class, 'store']);

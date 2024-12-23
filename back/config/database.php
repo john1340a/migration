@@ -94,7 +94,6 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => env('DB_SCHEMA', 'GEOMATIQUEWEB'),
-            'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
 

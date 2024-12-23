@@ -15,7 +15,7 @@ class User extends Authenticatable
     /**
      * La table associée au modèle
      */
-    protected $table = 'GEOMATIQUEWEB.user';
+    protected $table = 'user';
 
     /**
      * Indique si le modèle doit être horodaté

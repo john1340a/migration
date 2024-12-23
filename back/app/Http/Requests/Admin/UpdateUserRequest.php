@@ -16,9 +16,11 @@ class UpdateUserRequest extends FormRequest
 
     public function rules()
     {
+        $userId = $this->route('user')->id;
+        
         return [
-            'username' => 'sometimes|required|string|unique:users,username,' . $this->user->id,
-            'email' => 'sometimes|required|email',
+            'username' => 'sometimes|required|string|unique:user,username,' . $userId,
+            'email' => 'sometimes|required|email|unique:user,email,' . $userId,
             'password' => 'nullable|min:8',
             'admin' => 'sometimes|boolean',
             'premium' => 'sometimes|boolean',
