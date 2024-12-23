@@ -65,17 +65,4 @@ class UserController extends BaseAdminController
             ], 422);
         }
     }
-
-    public function addMap(AddMapRequest $request, User $user)
-    {
-        try {
-            $map = $user->maps()->create($request->validated());
-            return response()->json($map, 201);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Erreur lors de l\'ajout de la carte',
-                'errors' => [$e->getMessage()]
-            ], 422);
-        }
-    }
 }
