@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Admin\MapController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserBackgroundController;
 use App\Http\Controllers\Admin\MapBasemapController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -16,6 +17,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/users/{user}', [UserController::class, 'show']);
         Route::put('/users/{user}', [UserController::class, 'update']);
         Route::delete('/users/{user}', [UserController::class, 'destroy']);
+
+        // Background routes
+        Route::post('/users/{user}/background', [UserBackgroundController::class, 'upload']);
 
         // Map routes
         Route::get('/maps', [MapController::class, 'adminIndex']);
